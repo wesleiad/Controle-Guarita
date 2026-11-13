@@ -30,7 +30,8 @@ async function verificar() {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'guarita-upd-')), zip = path.join(tmp, 'v.zip');
   try {
     fs.writeFileSync(zip, Buffer.from(await (await get(`https://codeload.github.com/${REPO}/zip/refs/heads/${RAMO}`)).arrayBuffer()));
-    const x = spawnSync('tar', ['-xf', zip, '-C', tmp], { windowsHide: true });
+    const tarExe = process.platform === 'win32' ? path.join(process.env.SystemRoot || 'C:\Windows', 'System32', 'tar.exe') : 'tar';
+    const x = spawnSync(tarExe, ['-xf', 'v.zip'], { cwd: tmp, windowsHide: true });
     if (x.status !== 0) throw new Error('falha ao extrair: ' + (x.stderr || '').toString());
     const pasta = fs.readdirSync(tmp).map(n => path.join(tmp, n)).find(p => fs.statSync(p).isDirectory());
     if (!pasta || !fs.existsSync(path.join(pasta, 'server.js'))) throw new Error('pacote inválido (sem server.js)');
