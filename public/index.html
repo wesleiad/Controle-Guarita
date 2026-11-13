@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Controle de Guarita</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="login" class="login hide"><form id="fl" class="card-login">
+  <h1>CONTROLE DE GUARITA</h1>
+  <label>Usuário<input id="lu" autocomplete="username" autofocus></label>
+  <label>Senha<input id="lp" type="password" autocomplete="current-password"></label>
+  <div id="lerr" class="erro"></div>
+  <button class="btn verde grande">ENTRAR</button>
+</form></div>
+<div id="app" class="hide">
+  <div class="layout">
+    <main>
+      <header><b id="quem"></b><span id="relogio"></span><button class="btn cinza" id="sair">Sair</button></header>
+      <nav id="tabs"></nav>
+      <section id="conteudo"></section>
+    </main>
+    <aside id="guia"></aside>
+  </div>
+</div>
+<div id="modal" class="modal hide"><div class="modal-box" id="mbox"></div></div>
+<div id="toast"></div>
+<script src="app.js"></script></body></html>
